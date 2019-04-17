@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Saad Tariq - Profile</title>
+	<link href = "https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" />
+	<style type="text/css">
+		#flash{
+			height: 100%;
+			width: 100%;
+		}
+		#flash_img{
+			height: 575px;
+			width: 100%;
+			opacity: 0.8;
+			animation: flash_anim 1s;
+			animation-iteration-count: 3;
+			position: fixed;
+			z-index: -1;
+		}
+		@keyframes flash_anim{
+		25%{transform: translate(50%, 0%);}
+		50%{transform: translate(-50%, 0%);}
+		75%{transform: translate(-50%, 0%);}
+		100%{transform: translate(50%, 0%);}
+		
+		0% { transform: translate(1px, 1px) rotate(0deg); }
+		10% { transform: translate(-1px, -2px) rotate(-1deg); }
+		20% { transform: translate(-3px, 0px) rotate(1deg); }
+		30% { transform: translate(3px, 2px) rotate(0deg); }
+		40% { transform: translate(1px, -1px) rotate(1deg); }
+		50% { transform: translate(-1px, 2px) rotate(-1deg); }
+		60% { transform: translate(-3px, 1px) rotate(0deg); }
+		70% { transform: translate(3px, 1px) rotate(-1deg); }
+		80% { transform: translate(-1px, -1px) rotate(1deg); }
+		90% { transform: translate(1px, 2px) rotate(0deg); }
+		100% { transform: translate(1px, -2px) rotate(-1deg); }
+		}
+		#title_backcolor{
+			background-color: #f5c087;
+			height: 570px;
+			width: 100%;
+			z-index: -2;
+			opacity: 0.3;
+			background-repeat: no-repeat;
+		}
+		#title{
+			z-index: 1;
+		}
+		#title h1{
+			position: absolute;
+			top: 5%;
+			font-family: "Comic Sans MS", cursive, sans-serif;
+			color: #cc7e10;
+			font-size: 90px;
+		}
+		#title h4{
+			position: absolute;
+			top: 45%;
+			font-family: "Comic Sans MS", cursive, sans-serif;
+			color: #cc7e10;
+			font-size: 30px;
+		}
+		#down_arrow{
+			height: 30px;
+			width: 70px;
+			opacity: 0.4;
+			position: absolute;
+			top: 545px;
+			left: 92.5%;
+			filter: grayscale(100%);
+			background-color: #f5c087;
+			transition: top 2s;
+		}
+		#down_arrow:hover{
+			top: 520px;
+		}
+		#cloud{
+			position: absolute;
+			top: 40%;
+			left: 70%;
+			z-index: -1;
+			height: 25%;
+			width: 20%;
+			border-radius: 15%;
+			animation-name: cloud_anim;
+			animation-duration: 2s;
+		}
+		@keyframes cloud_anim{
+			100%{transform: rotate(-360deg);}
+		}
+		#fill{
+			background-color: #fff;
+			top: 575px;
+			width: 100%;
+			height: 100%;
+		}
+		#profile_pic{
+			top: 575px;
+			width: 100%;
+		}
+		#picture{
+			border-radius: 50%;
+			height: 300px;
+			width: 25%;
+		}
+		#menu_bar{
+			width: 100%;
+			top: 775px;
+			justify-content: space-between;
+		}
+		#menu_bar a{
+			padding: 35px;
+			font-family: cursive;
+			color: #fea019; 
+			font-size: 25px;
+		}
+		/*#detail{
+			width: 100%;
+			/*height: 40%;
+		}*/
+		#abt_me{
+			padding: 40px;
+			margin: 25px;
+			background-color: #f5c087;
+			height: 140px;
+		}
+		#abt_me table{
+			font-size: 15px;
+			font-family: cursive;
+			color: brown;
+			border-collapse: collapse;
+			text-align: left;
+			height: 100px;
+			width: 40%;
+		}
+		#abt_me tr, td{
+			padding: 7.5px;
+			text-align: center;
+		}
+		#abt_me tr:hover{
+			background-color: #ee7b16;
+		}
+	</style>
+</head>
+<body>
+<div id = "flash">
+	<img src = "https://wallpapercave.com/wp/wp1829248.jpg" id = "flash_img" />
+	<div id = "title_backcolor"></div>
+	<div id = "title">
+		<h1>Saad Tariq</h1>
+		<h4>Computer Science Sophomore</h4>
+		<a href = "#fill"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmmj6do-u5--0GrId3Jv0KDslc2aLOnJVHbQhRiMzgLw397UfItQ" id = "down_arrow" title="go down" /></a>
+		<img src = "https://pbs.twimg.com/media/D4YHhDOXkAEw-fq.jpg" id = "cloud" />
+	</div>
+	<div id = "fill">
+		<div id = "profile_pic">
+			<center>
+			<img src="https://lh3.googleusercontent.com/a-/AAuE7mAkOpyHgaLNHvcqpunvWwjAE6xs_3FozizOEokxgQ=s192" id = "picture" />
+			</center>
+		</div>
+		<div id = "menu_bar">
+			<center>
+			<a href="#abt_me" id = "about">About Me</a>
+			<a href="#abt_me" id = "intro">Introduction</a>
+			<a href="#abt_me" id = "edu">Education</a>
+			<a href="#abt_me" id = "int">Interests</a>
+			<a href="#abt_me" id = "exp">Experience</a>
+			<a href="#abt_me" id = "skl">Skills</a>
+			</center>
+		</div>
+		<!--<div id = "detail">-->
+			<div id = "abt_me">
+				<center>
+				<table>
+					<tr>
+						<td>Full Name:</td><td>Muhammad Saad Tariq</td>
+					</tr>
+					<tr>
+						<td>Age:</td><td>20</td>
+					</tr>
+					<tr>
+						<td>Date of Birth:</td><td>16 February 1999</td>
+					</tr>
+					<tr>
+						<td>Region:</td><td>Islamabad, Pakistan</td>
+					</tr>
+				</table>
+			</center>
+			</div>
+		<!--</div>-->
+	</div>
+</div>
+<script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$(function(){
+		$('#cloud').animate({top:"5%", left:"75%"}, 2000);
+
+		$('#about').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
+		var target = $('#abt_me');
+		$('#intro').on('click', function(){
+			$('#about').removeAttr('style');
+			$('#edu').removeAttr('style');
+			$('#exp').removeAttr('style');
+			$('#int').removeAttr('style');
+			$('#skl').removeAttr('style');
+			target.html($("<div>I am a 20 year old student at National University of Sciences and Technology (NUST). I am currently doing my Bachelors in Computer Science and am enrolled in my second year.</div>").attr({'id':'float_intro', "class":"introd"}));
+			target.append($("<div>I was born in the city of Karachi but have lived my entire life in Islamabad. Originally my family belongs to the region of Kamalia in Punjab, Pakistan.</div>").attr({'id':'float_intro2', "class":"introd"}));
+			target.append($("<div>I did my O'Levels from Preparatory School Islamabad and secured straight A's. Then I moved to Roots Millennium for my A levels and took up Physics, Chemistry, Maths, and Accounting, and passed them with straight A's too. After completing my undergraduate degree I hope to pursue my higher educaton abroad.</div>").attr({'id':'float_intro3', "class":"introd"}));
+			
+			$('#intro').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
+			$('.introd').css({"font-family":"cursive", "font-size":"15px", "color":"brown", "width":"30%", "float":"left", "padding":"15px"});
+			target.css({"height":"140px"});
+		});
+		$('#edu').on('click', function(){
+			$('#intro').removeAttr('style');
+			$('#about').removeAttr('style');
+			$('#exp').removeAttr('style');
+			$('#int').removeAttr('style');
+			$('#skl').removeAttr('style');
+			target.html("<center><table><colgroup><col><col><col bgcolor = '#99ffeb'></colgroup><tr><th>Qualification</th><th>Institution</th><th>Result</th><th>Year Completed</th></tr><tr><td><center>Bachelors of Computer Science</center></td><td><center>NUST</center></td><td><center>3.12 CGPA</center></td><td><center>2021</center></td></tr><tr><td><center>GCSE A' Level</center></td><td><center>Roots Millennium School</center></td><td><center>4A's</center></td><td><center>2017</center></td></tr><tr><td><center>GCSE O' Level</center></td><td><center>Preparatory School Islamabad</center></td><td><center>5A* 4A's</center></td><td><center>2015</center></td></tr></table></center>");
+
+			$('#edu').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
+			target.css("height", "200px");
+		});
+		$('#about').on('click', function(){
+			$('#intro').removeAttr('style');
+			$('#edu').removeAttr('style');
+			$('#exp').removeAttr('style');
+			$('#int').removeAttr('style');
+			$('#skl').removeAttr('style');
+			target.html("<center><table><tr><td>Full Name:</td><td>Muhammad Saad Tariq</td></tr><tr><td>Age:</td><td>20</td></tr><tr><td>Date of Birth:</td><td>16 February 1999</td></tr><tr><td>Region:</td><td>Islamabad, Pakistan</td></tr></table></center>");
+
+			$('#about').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
+			target.css("height", "140px");
+		});
+		$('#exp').on('click', function(){
+			$('#intro').removeAttr('style');
+			$('#edu').removeAttr('style');
+			$('#about').removeAttr('style');
+			$('#int').removeAttr('style');
+			$('#skl').removeAttr('style');
+
+			target.html($("<div><h3>Leadership Roles</h3><ol><li>British Council Active Citizens Program</li><ul type = 'circle'><li>Project Head</li><li>Event Organizer</li></ul><li>United States Education Foundation - School Representative</li><ul><li>Member of College Competitive Club (CCC)</li><li>School Representative</li></ul> <li>School HeadBoy</li></ol></div>").attr({'class':'lead', 'id':'lead_div'}));
+			target.append($("<div><h3>Internships</h3><ul type = 'square'><li>MMUN Organizing Committee</li><li>Pakistan Red Crescent Society (PRC)</li><li>World Wildlife Foundation (WWF)</li></ul></div>").attr({'class':'lead', 'id':'intern_div'}));
+			
+			$('#exp').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
+			$('.lead').css({"font-family":"cursive", "color":"brown", "float":"left", "width":"50%"});
+			target.css("height", "200px");
+		});
+		$('#skl').on('click', function(){
+			$('#about').removeAttr('style');
+			$('#edu').removeAttr('style');
+			$('#exp').removeAttr('style');
+			$('#int').removeAttr('style');
+			$('#intro').removeAttr('style');
+			target.html($("<center></center>").attr('id','int_table'));
+			$('#int_table').append($("<tr><td>C</td><td>C++</td><td>Java</td><td>HTML</td><td>CSS</td><td>JavaScript</td><td>jQuery</td><td>SQL</td></tr>").attr('id', 'int_title'));
+			$('#int_table').append($("<tr><td><i class='em em-star'></i><i class='em em-star'></i></td><td><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i></td><td><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i></td><td><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i></td><td><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i></td><td><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i></td><td><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i></td><td><i class='em em-star'></i><i class='em em-star'></i><i class='em em-star'></i></td></tr>").attr('id', 'int_stars'));
+			
+			$('#skl').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
+			$('#int_title').css({"font-size":"20px", "font-family":"cursive", "color":"brown"});
+			target.css("height", "100px");
+		});
+	})
+</script>
+</body>
+</html>
