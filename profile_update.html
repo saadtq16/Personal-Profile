@@ -49,16 +49,21 @@
 		#title h1{
 			position: absolute;
 			top: 5%;
-			font-family: "Comic Sans MS", cursive, sans-serif;
+			font-family: cursive;
 			color: #cc7e10;
 			font-size: 90px;
+			animation: anim_text 5s;
 		}
 		#title h4{
 			position: absolute;
 			top: 45%;
-			font-family: "Comic Sans MS", cursive, sans-serif;
+			font-family: cursive;
 			color: #cc7e10;
 			font-size: 30px;
+			animation: anim_text 5s;
+		}
+		@keyframes anim_text{
+			100%{transform:rotateX(360deg)};
 		}
 		#down_arrow{
 			height: 30px;
@@ -69,10 +74,11 @@
 			left: 92.5%;
 			filter: grayscale(100%);
 			background-color: #f5c087;
-			transition: top 2s;
+			animation: arrow 2s infinite
 		}
-		#down_arrow:hover{
-			top: 520px;
+		@keyframes arrow{
+			50%{top: 520px}
+			100%{top: 545px}
 		}
 		#cloud{
 			position: absolute;
@@ -83,7 +89,7 @@
 			width: 20%;
 			border-radius: 15%;
 			animation-name: cloud_anim;
-			animation-duration: 2s;
+			animation-duration: 3s;
 		}
 		@keyframes cloud_anim{
 			100%{transform: rotate(-360deg);}
@@ -140,6 +146,43 @@
 		#abt_me tr:hover{
 			background-color: #ee7b16;
 		}
+		#time_strip{
+			padding: 40px;
+			margin: 25px;
+			background-color: #f5c087;
+			height: 75px;
+			font-size: 30px;
+			font-family: cursive;
+			color: brown;
+			text-align: center;
+
+		}
+		#cross{
+			height: 60%;
+			width: 60%;
+			border: 5px  solid;
+		}
+		#cross td{
+			border: 2px solid;
+			padding: 10px;
+			background-color: #f5c087;
+			font-size: 50px;
+			text-align: center;
+			width : 15%;
+		}
+		.solution{
+			font-size: 20px;
+			padding: 5px;
+			text-align: center;
+			margin-left: 15%;
+		}
+		#puzzle_heading{
+			font-size: 30px;
+			padding: 5px;
+			text-align: center;
+			margin-left: 15%;
+			color: brown;
+		}
 	</style>
 </head>
 <body>
@@ -160,16 +203,15 @@
 		</div>
 		<div id = "menu_bar">
 			<center>
-			<a href="#abt_me" id = "about">About Me</a>
-			<a href="#abt_me" id = "intro">Introduction</a>
-			<a href="#abt_me" id = "edu">Education</a>
-			<a href="#abt_me" id = "int">Interests</a>
-			<a href="#abt_me" id = "exp">Experience</a>
-			<a href="#abt_me" id = "skl">Skills</a>
+			<a href="#menu_bar" id = "about">About Me</a>
+			<a href="#menu_bar" id = "intro">Introduction</a>
+			<a href="#menu_bar" id = "edu">Education</a>
+			<a href="#menu_bar" id = "int">Interests</a>
+			<a href="#menu_bar" id = "exp">Experience</a>
+			<a href="#menu_bar" id = "skl">Skills</a>
 			</center>
 		</div>
-		<!--<div id = "detail">-->
-			<div id = "abt_me">
+		<div id = "abt_me">
 				<center>
 				<table>
 					<tr>
@@ -186,14 +228,38 @@
 					</tr>
 				</table>
 			</center>
-			</div>
-		<!--</div>-->
+		</div>
+		<div id="puzzle_div">
+			<h2 id = "puzzle_heading">Try out this exciting 15 puzzle game</h2>
+			<center>
+			<table id = "cross">
+		<tr>
+			<td id = "one" onclick="shift('one')"></td><td id = "two" onclick="shift('two')"></td><td id = "three" onclick="shift('three')"></td><td id = "four" onclick="shift('four')"></td>
+		</tr>
+		<tr>
+			<td id = "five" onclick="shift('five')"></td><td id = "six" onclick="shift('six')"></td><td id = "seven" onclick="shift('seven')"></td><td id = "eight" onclick="shift('eight')"></td>
+		</tr>
+		<tr>
+			<td id = "nine" onclick="shift('nine')"></td><td id = "ten" onclick="shift('ten')"></td><td id = "eleven" onclick="shift('eleven')"></td><td id = "twelve" onclick="shift('twelve')"></td>
+		</tr>
+		<tr>
+			<td id = "thirteen" onclick="shift('thirteen')"></td><td id = "fourteen" onclick="shift('fourteen')"></td><td id = "fifteen" onclick="shift('fifteen')"></td><td id = "sixteen" onclick="shift('sixteen')"></td>
+		</tr>
+	</table>
+	<p>
+		<button class = "solution" onclick = "solve()">Solve</button>
+		<button class = "solution" onclick = "checkWin()">Check</button>
+	</p>
+	<p style = "margin-left: 10%">Guidelines: The blank slot should be places in the very first position.</p>
+		</div>
+	</center>
+		<div id = "time_strip"></div>
 	</div>
 </div>
 <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	$(function(){
-		$('#cloud').animate({top:"5%", left:"75%"}, 2000);
+		$('#cloud').animate({top:"5%", left:"75%"}, 3000);
 
 		$('#about').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
 		var target = $('#abt_me');
@@ -210,6 +276,7 @@
 			$('#intro').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
 			$('.introd').css({"font-family":"cursive", "font-size":"15px", "color":"brown", "width":"30%", "float":"left", "padding":"15px"});
 			target.css({"height":"140px"});
+			$('#ftb_div').remove();
 		});
 		$('#edu').on('click', function(){
 			$('#intro').removeAttr('style');
@@ -221,6 +288,7 @@
 
 			$('#edu').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
 			target.css("height", "200px");
+			$('#ftb_div').remove();
 		});
 		$('#about').on('click', function(){
 			$('#intro').removeAttr('style');
@@ -232,6 +300,7 @@
 
 			$('#about').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
 			target.css("height", "140px");
+			$('#ftb_div').remove();
 		});
 		$('#exp').on('click', function(){
 			$('#intro').removeAttr('style');
@@ -240,12 +309,14 @@
 			$('#int').removeAttr('style');
 			$('#skl').removeAttr('style');
 
-			target.html($("<div><h3>Leadership Roles</h3><ol><li>British Council Active Citizens Program</li><ul type = 'circle'><li>Project Head</li><li>Event Organizer</li></ul><li>United States Education Foundation - School Representative</li><ul><li>Member of College Competitive Club (CCC)</li><li>School Representative</li></ul> <li>School HeadBoy</li></ol></div>").attr({'class':'lead', 'id':'lead_div'}));
-			target.append($("<div><h3>Internships</h3><ul type = 'square'><li>MMUN Organizing Committee</li><li>Pakistan Red Crescent Society (PRC)</li><li>World Wildlife Foundation (WWF)</li></ul></div>").attr({'class':'lead', 'id':'intern_div'}));
+			target.html($("<center></center>").attr('id', 'exp_center'));
+			$('#exp_center').append($("<div><h3>Leadership Roles</h3><ol><li>British Council Active Citizens Program</li><ul type = 'circle'><li>Project Head</li><li>Event Organizer</li></ul><li>United States Education Foundation - School Representative</li><ul><li>Member of College Competitive Club (CCC)</li><li>School Representative</li></ul> <li>School HeadBoy</li></ol></div>").attr({'class':'lead', 'id':'lead_div'}));
+			$('#lead_div').after($("<div><h3>Internships</h3><ul type = 'square'><li>MMUN Organizing Committee</li><li>Pakistan Red Crescent Society (PRC)</li><li>World Wildlife Foundation (WWF)</li></ul></div>").attr({'class':'lead', 'id':'intern_div'}));
 			
 			$('#exp').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
-			$('.lead').css({"font-family":"cursive", "color":"brown", "float":"left", "width":"50%"});
+			$('.lead').css({"font-family":"cursive", "color":"brown", "float":"left", "width":"50%", "text-align":"left"});
 			target.css("height", "200px");
+			$('#ftb_div').remove();
 		});
 		$('#skl').on('click', function(){
 			$('#about').removeAttr('style');
@@ -260,8 +331,231 @@
 			$('#skl').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
 			$('#int_title').css({"font-size":"20px", "font-family":"cursive", "color":"brown"});
 			target.css("height", "100px");
+			$('#ftb_div').remove();
 		});
-	})
+		$('#int').on('click', function(){
+			$('#intro').removeAttr('style');
+			$('#edu').removeAttr('style');
+			$('#about').removeAttr('style');
+			$('#exp').removeAttr('style');
+			$('#skl').removeAttr('style');
+
+			target.html($("<center></center>").attr('id','int_center'));
+			$('#int_center').append($("<div><h3>Football</h3></div>").attr({'class':'interest_sec', 'id':'ftb'}));
+			$('#ftb').append($("<img src = 'https://cdn.pixabay.com/photo/2013/07/13/13/34/football-161132__340.png' />").attr({'id':'ftb_img', 'class':'int_img_anim'}));
+			
+			$('#ftb').after($("<div><h3>Comics</h3></div>").attr({'class':'interest_sec', 'id':'cmc'}));
+			$('#cmc').append($("<img src = 'https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/272820/381201/jul180644__14403.1537997529.jpg?c=2&imbypass=on' />").attr({'id':'cmc_img', 'class':'int_img_anim'}));
+
+			$('#cmc').after($("<div><h3>Gaming</h3></div>").attr({'class':'interest_sec', 'id':'gmg'}));
+			$('#gmg').append($("<img src = 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/2013/2013005_sa.jpg;maxHeight=640;maxWidth=550' />").attr({'id':'gmg_img', 'class':'int_img_anim'}));
+
+			$('#gmg_img').css({"height":"120px", "width":"100px"});
+			$('#cmc_img').css({"height":"120px", "width":"100px"});
+			$('#ftb_img').css({"border-radius":"90%", "height":"120px", "width":"100px"});
+			setInterval(function(){ $('.int_img_anim').animate({height:"160px", width:"130px"}, 1000); }, 500);
+			setInterval(function(){ $('.int_img_anim').animate({height:"120px", width:"100px"}, 1000); }, 500);
+			$('#int').css({"color":"red", "font-weight":"bold", "text-decoration":"none"});
+			$('.interest_sec').css({"font-family":"cursive", "color":"brown", "float":"left", "width":"50%"});
+			$('.interest_sec').css({"float":"left", "width":"33.33%"});
+			target.css("height", "200px");
+
+			//Interest details start here
+			$('#ftb_img').on('click', function(){
+				$('#abt_me').after($("<div></div>").attr({'id':'ftb_div', 'class':'int_ref'}));
+				$('#ftb_div').append($("<p>I am a huge football fan and passionately supprt FC Barcelona, my favourite players being Lionel Messi and Andres Iniesta.I avidly follow the sport in multiple European countries.</p>").attr({'id':'ftb_par', 'class':'ftb_text'}));
+				$('#ftb_par').after($("<p>I greatly enjoy playing football as well and play as a central defensive midfielder or a center back, whenever the opportunity arises in my free time.</p>").attr({'id':'ftb_par2', 'class':'ftb_text'}));
+				$('#ftb_par2').after($("<p>Websites I like:</p>").attr({'id':'ftb_par3', 'class':'ftb_text'}));
+				$('#ftb_par3').after($("<a href = 'https://www.skysports.com/' target = '_blank'>Sky Sports</a><br><a href = 'https://www.livescore.com/' target = '_blank'>LiveScores</a>").attr({'class':'ftb_text'}));
+
+				$('.int_ref').css({"padding":"40px","margin":"25px","background-color":"#f5c087"});
+				$('.ftb_text').css({"font-family":"cursive", "color":"brown"});
+			});
+			//Comics
+			$('#cmc_img').on('click', function(){
+				$('#ftb_div').remove();
+				$('#abt_me').after($("<div></div>").attr({'id':'ftb_div', 'class':'int_ref'}));
+				$('#ftb_div').append($("<p>I am a diligent comic book fan and am passionate about superhero character. My favorite characters are the Flash and Batman. I am a regular comic book follower.</p>").attr({'id':'ftb_par', 'class':'ftb_text'}));
+				$('#ftb_par').after($("<p>Websites I follow:</p>").attr({'id':'ftb_par3', 'class':'ftb_text'}));
+				$('#ftb_par3').after($("<a href = 'https://comicbook.com/' target = '_blank'>ComicBook.com</a>").attr({'class':'ftb_text'}));
+
+				$('.int_ref').css({"padding":"40px","margin":"25px","background-color":"#f5c087"});
+				$('.ftb_text').css({"font-family":"cursive", "color":"brown"});
+			});
+
+			$('#gmg_img').on('click', function(){
+				$('#ftb_div').remove();
+				$('#abt_me').after($("<div></div>").attr({'id':'ftb_div', 'class':'int_ref'}));
+				$('#ftb_div').append($("<p>I spend my weekends on old school pc games. I have a few selective favorites: Command and Conquer, Unreal Tournament and Prince of Persia</p>").attr({'id':'ftb_par', 'class':'ftb_text'}));
+				$('#ftb_par').after($("<p>Websites I follow:</p>").attr({'id':'ftb_par3', 'class':'ftb_text'}));
+				$('#ftb_par3').after($("<a href = 'https://www.pcgamer.com/' target = '_blank'>PC Gamer</a>").attr({'class':'ftb_text'}));
+
+				$('.int_ref').css({"padding":"40px","margin":"25px","background-color":"#f5c087"});
+				$('.ftb_text').css({"font-family":"cursive", "color":"brown"});
+			});
+		});
+
+		function showTime(){
+		var obj = new Date();
+		var mer = obj.getHours();
+		const month_name = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+		const day_name = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+		let final_time = noon(obj.getHours())+":"+append(obj.getMinutes())+" "+meridien(mer);
+		let final_date = day_name[obj.getDay()]+", "+obj.getDate()+" "+month_name[obj.getMonth()]+" "+obj.getFullYear()+" (GMT +"+((Math.abs(obj.getTimezoneOffset())) / 60)+")<br>Time in Islamabad";
+		setTimeout(showTime, 1000);
+		return (final_time+final_date);
+		}
+		
+		function meridien(mer){
+			let opt;
+			let hour_val = mer;
+			if(hour_val >= 0 && hour_val < 12)
+				opt = "am";
+			else if(hour_val >= 12 && hour_val <= 23)
+				opt = "pm";
+			return opt;
+		}
+		function append(x){
+			if(x < 10)
+				return "0"+x;
+			else
+				return x;
+		}
+		function noon(y){
+			if (y == 12)
+				return y;
+			else if (y == 0)
+				return ("0"+(y % 12));
+			else
+			return y % 12;
+		}
+		$('#time_strip').append(showTime());
+	});
+	var empty_grid;
+	var adjacent = [];
+	const grid = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen'];
+	function assignNumbers(){
+		var num_grid = [];
+		var num_grid_count = 0;
+		for(let i = 1; i < grid.length; i++){
+			let temp = Math.floor(Math.random() * 16);
+			let pos = document.getElementById(grid[temp]);
+			if(pos.innerHTML == ""){
+				pos.innerHTML = i;
+				num_grid[num_grid_count] = grid[temp];
+			}
+			else{
+				let count = 0;
+				do{
+					pos = document.getElementById(grid[temp + count]);
+					count++;
+					temp = 0;
+				}
+				while(pos.innerHTML != "" && (temp + count) <= 15);
+				pos.innerHTML = i;
+				num_grid[num_grid_count] = grid[count - 1];
+			}
+			num_grid_count++;
+		}
+		for(let j = 0; j < grid.length; j++){
+			if(document.getElementById(grid[j]).innerHTML == "")
+				empty_grid = grid[j];
+		}
+	}
+	function shift(elem){
+		switch(elem){
+			case 'one':
+				adjacent = ['two', 'five'];
+				break;
+			case 'two':
+				adjacent = ['one', 'three', 'six'];
+				break;
+			case 'three':
+				adjacent = ['two', 'four', 'seven'];
+				break;
+			case 'four':
+				adjacent = ['three', 'eight'];
+				break;
+			case 'five':
+				adjacent = ['one', 'six', 'nine'];
+				break;
+			case 'six':
+				adjacent = ['two', 'five', 'ten', 'seven'];
+				break;
+			case 'seven':
+				adjacent = ['three', 'six', 'eleven', 'eight'];
+				break;
+			case 'eight':
+				adjacent = ['four', 'seven', 'twelve'];
+				break;
+			case 'nine':
+				adjacent = ['five', 'ten', 'thirteen'];
+				break;
+			case 'ten':
+				adjacent = ['six', 'nine', 'fourteen', 'eleven'];
+				break;
+			case 'eleven':
+				adjacent = ['seven', 'ten', 'fifteen', 'twelve'];
+				break;
+			case 'twelve':
+				adjacent = ['eight', 'eleven', 'sixteen'];
+				break;
+			case 'thirteen':
+				adjacent = ['nine', 'fourteen'];
+				break;
+			case 'fourteen':
+				adjacent = ['ten', 'thirteen', 'fifteen'];
+				break;
+			case 'fifteen':
+				adjacent = ['eleven', 'fourteen', 'sixteen'];
+				break;
+			case 'sixteen':
+				adjacent = ['twelve', 'fifteen'];
+				break;
+
+		}
+		for(let i = 0; i < adjacent.length; i++){
+			let a = document.getElementById(elem);
+			let b = document.getElementById(adjacent[i]);
+			console.log(a+" "+b);
+			if(b.innerHTML == ""){
+				let temp = a.innerHTML;
+				a.innerHTML = b.innerHTML;
+				b.innerHTML = temp;
+				return; 
+			}
+		}
+
+	}
+	function checkWin(){
+		let check_res = 0;
+		for (let j = 0; j < (grid.length - 1); j++){
+			let prev = document.getElementById(grid[j]).innerHTML;
+			let next = document.getElementById(grid[j+1]).innerHTML;
+			if(prev < next)
+				check_res++;
+			else
+			 check_res--;
+		}
+		if (check_res == 13)
+			alert("Congratulations! You have solved the puzzle!");
+		else
+			alert("Continue playing!");
+	}
+	function solve(){
+		let sol = [];
+		for(let i = 0; i < grid.length; i++){
+			sol[i] = document.getElementById(grid[i]).innerHTML;
+		}
+		sol.sort(function(a, b){return a - b});
+		for(let j = 0; j < grid.length; j++){
+			document.getElementById(grid[j]).innerHTML = sol[j];
+		}
+	}
+	assignNumbers();
+	
+
+
 </script>
 </body>
 </html>
